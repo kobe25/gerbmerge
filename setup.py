@@ -26,7 +26,7 @@ if 0:
 
 SampleFiles = glob.glob('testdata/*')
 DocFiles = glob.glob('doc/*')
-AuxFiles = ['COPYING']
+AuxFiles = []
 
 if sys.platform == 'win32' or ('bdist_wininst' in sys.argv):
   #DestLib = distutils.sysconfig.get_config_var('prefix')
@@ -37,8 +37,8 @@ if sys.platform == 'win32' or ('bdist_wininst' in sys.argv):
   BinFiles = ['misc/gerbmerge.bat']
   BinDir = '.'
 else:
-  DestLib = distutils.sysconfig.get_config_var('LIBPYTHON')
-  DestDir = os.path.join(DestLib, 'gerbmerge')
+  DestLib = '/usr/local/lib/python2.7'
+  DestDir = './gerbmerge'
   BinFiles = ['misc/gerbmerge']
   BinDir = distutils.sysconfig.get_config_var('BINDIR')  
 
@@ -52,7 +52,7 @@ python %s/site-packages/gerbmerge/gerbmerge.py $*
 
 dist=setup (name = "gerbmerge",
        license = "GPL",
-       version = "%d.%d" % (VERSION_MAJOR, VERSION_MINOR),
+       version = "%d.%s" % (VERSION_MAJOR, VERSION_MINOR),
       long_description=\
 r"""GerbMerge is a program that combines several Gerber
 (i.e., RS274-X) and Excellon files into a single set
